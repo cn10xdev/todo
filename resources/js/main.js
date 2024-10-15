@@ -1,5 +1,4 @@
-
-var data = (localStorage.getItem('todoList')) ? JSON.parse(localStorage.getItem('todoList')):{
+var data = (localStorage.getItem('todoList')) ? JSON.parse(localStorage.getItem('todoList')) : {
   todo: [],
   completed: []
 };
@@ -14,19 +13,19 @@ renderTodoList();
 // If there is any text inside the item field, add that text to the todo list
 document.getElementById('add').addEventListener('click', function() {
   var value = document.getElementById('item').value;
-  if (value) {
+  if (value.trim()) {
     addItem(value);
   }
 });
 
 document.getElementById('item').addEventListener('keydown', function (e) {
   var value = this.value;
-  if ((e.code === 'Enter' || e.code === 'NumpadEnter') && value) {
+  if ((e.keyCode === 13 || e.keyCode === 'NumpadEnter') && value) {
     addItem(value);
   }
 });
 
-function addItem (value) {
+function addItem(value) {
   addItemToDOM(value);
   document.getElementById('item').value = '';
 
@@ -35,8 +34,7 @@ function addItem (value) {
 }
 
 function renderTodoList() {
-  if (!data.todo.length && !data.completed.length) return;
-
+  if (!data.todo.length || !data.completed.length) return; 
   for (var i = 0; i < data.todo.length; i++) {
     var value = data.todo[i];
     addItemToDOM(value);
@@ -65,6 +63,7 @@ function removeItem() {
   }
   dataObjectUpdated();
 
+  
   parent.removeChild(item);
 }
 
@@ -83,19 +82,17 @@ function completeItem() {
   }
   dataObjectUpdated();
 
-  // Check if the item should be added to the completed list or to re-added to the todo list
-  var target = (id === 'todo') ? document.getElementById('completed'):document.getElementById('todo');
+  var target = (id === 'todo') ? document.getElementById('completed') : document.getElementById('todo');
 
   parent.removeChild(item);
   target.insertBefore(item, target.childNodes[0]);
 }
 
-// Adds a new item to the todo list
 function addItemToDOM(text, completed) {
-  var list = (completed) ? document.getElementById('completed'):document.getElementById('todo');
+  var list = (completed) ? document.getElementById('completed') : document.getElementById('todo');
 
   var item = document.createElement('li');
-  item.innerText = text;
+  item.textContent = text;
 
   var buttons = document.createElement('div');
   buttons.classList.add('buttons');
@@ -104,19 +101,17 @@ function addItemToDOM(text, completed) {
   remove.classList.add('remove');
   remove.innerHTML = removeSVG;
 
-  // Add click event for removing the item
   remove.addEventListener('click', removeItem);
 
   var complete = document.createElement('button');
   complete.classList.add('complete');
   complete.innerHTML = completeSVG;
 
-  // Add click event for completing the item
   complete.addEventListener('click', completeItem);
 
   buttons.appendChild(remove);
   buttons.appendChild(complete);
   item.appendChild(buttons);
 
-  list.insertBefore(item, list.childNodes[0]);
+  list.appendChild(item);
 }
