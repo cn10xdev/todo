@@ -54,18 +54,30 @@ function removeItem() {
   var item = this.parentNode.parentNode;
   var parent = item.parentNode;
   var id = parent.id;
-  var value = item.innerText;
+  var value = item.innerText.trim();
 
-  if (id === 'todo') {
-    data.todo.splice(data.todo.indexOf(value), 1);
-  } else {
-    data.completed.splice(data.completed.indexOf(value), 1);
+  if (confirm(`Are you sure you want to remove "${value}" from the list?`)) {
+      if (id === 'todo') {
+          if (data.todo.includes(value)) {
+              data.todo.splice(data.todo.indexOf(value), 1);
+          } else {
+              console.warn(`Item not found in todo: ${value}`);
+              return;
+          }
+      } else if (id === 'completed') {
+          if (data.completed.includes(value)) {
+              data.completed.splice(data.completed.indexOf(value), 1);
+          } else {
+              console.warn(`Item not found in completed: ${value}`);
+              return;
+          }
+      }
+
+      dataObjectUpdated();
+      parent.removeChild(item);
   }
-  dataObjectUpdated();
-
-  
-  parent.removeChild(item);
 }
+
 
 function completeItem() {
   var item = this.parentNode.parentNode;
