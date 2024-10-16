@@ -253,3 +253,48 @@ ul.todo#completed:after {
   font-size: 12px;
   color: #aaa;
 }
+
+.popups {
+  position: absolute;
+  right: 0;
+  z-index: 5;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  background-color: #edf0f1;
+}
+
+.popups svg {
+  width: 20px;
+  height: 20px;
+}
+
+.success_popup {
+  color: #25AE88;
+  border: 2px solid #25AE88;
+}
+
+.failed_popup {
+  color: #FF6643;
+  border: 2px solid #FF6643;
+}
+
+.hidden {
+  display: none;
+}
+
+
+@media (min-width: 768px) {
+  .popups {
+    padding: 10px 16px;
+  }
+
+  .popups svg {
+    width: 40px;
+    height: 40px;
+  }
+}
