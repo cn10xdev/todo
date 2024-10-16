@@ -265,7 +265,7 @@ ul.todo#completed:after {
   flex-direction: row;
   align-items: center;
   gap: 10px;
-  background-color: #edf0f1;
+  background-color: #f2fcff;
 }
 
 .popups svg {
