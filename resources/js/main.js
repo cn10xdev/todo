@@ -26,6 +26,14 @@ document.getElementById('item').addEventListener('keydown', function (e) {
 });
 
 function addItem(value) {
+
+  var isDuplicatedInTodo = data.todo.findIndex(item => item === value);
+
+  if(isDuplicatedInTodo !== -1) {
+    displayPopup("failed", "Task is repeated.");
+    return;
+  }
+
   addItemToDOM(value);
   document.getElementById('item').value = '';
 
