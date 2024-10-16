@@ -36,7 +36,7 @@ function addItem(value) {
 }
 
 function renderTodoList() {
-  if (!data.todo.length || !data.completed.length) return; 
+  if (data.todo.length === 0 && data.completed.length === 0) return; 
   for (var i = 0; i < data.todo.length; i++) {
     var value = data.todo[i];
     addItemToDOM(value);
