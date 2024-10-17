@@ -61,13 +61,19 @@ function removeItem() {
   var value = item.innerText;
 
   if (id === "todo") {
-    data.todo.splice(data.todo.indexOf(value), 1);
+    var index = data.todo.indexOf(value);
+    if (index > -1) {
+      data.todo.splice(index, 1);
+      parent.removeChild(item);
+    }
   } else {
-    data.completed.splice(data.completed.indexOf(value), 1);
+    var index = data.completed.indexOf(value);
+    if (index > -1) {
+      data.completed.splice(index, 1);
+      parent.removeChild(item);
+    }
   }
   dataObjectUpdated();
-
-  parent.removeChild(item);
 }
 
 function completeItem() {
