@@ -13,8 +13,6 @@ This is a simple and user-friendly **To-Do List** web application built using **
 
 ![To-Do List Screenshot](./images/ToDo.png)
 
-> **Note:** Replace `path-to-your-image.png` with the correct relative path where you have placed your screenshot in the repository.
-
 ## Technologies Used
 
 - **HTML5** for structuring the app.
@@ -42,6 +40,39 @@ Ensure you have the following installed on your local development environment:
    ```bash
    git clone https://github.com/your-username/todo-app.git
    ```
+
+2. **Navigate to the project directory:**
+
+   Once the repository is cloned, navigate to the folder:
+
+   ```bash
+   cd todo-app
+
+   ```
+
+3. **Open the project in VS Code (Optional):**
+
+   If you're using VS Code, you can open the project with the following command:
+
+   ```bash
+   code .
+
+   ```
+
+4. **Open the index.html file:**
+
+   Now, open the index.html file in your browser. You can do this by either:
+
+   - Dragging the index.html file into your browser.
+   - Using the Live Server extension in VS Code (recommended) for real-time updates.
+
+   If you use VS Code's Live Server:
+
+   - Right-click the index.html file and choose Open with Live Server.
+   - This will automatically open your browser and run the To-Do List application.
+
+5. **Start adding tasks:**
+   Once the application is open in your browser, you can start adding, marking, and deleting tasks!
 
 ## License
 
