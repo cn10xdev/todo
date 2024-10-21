@@ -12,14 +12,14 @@ renderTodoList();
 // User clicked on the add button
 // If there is any text inside the item field, add that text to the todo list
 document.getElementById('add').addEventListener('click', function() {
-  var value = document.getElementById('item').value;
-  if (value.trim()) {
+  var value = document.getElementById('item').value.trim();//use trim here to avodi whitespaces.
+  if (value) {
     addItem(value);
   }
 });
 
 document.getElementById('item').addEventListener('keydown', function (e) {
-  var value = this.value;
+  var value = this.value.trim();//use trim here to avodi whitespaces.
   if ((e.keyCode === 13 || e.keyCode === 'NumpadEnter') && value) {
     addItem(value);
   }
