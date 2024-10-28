@@ -113,5 +113,6 @@ function addItemToDOM(text, completed) {
   buttons.appendChild(complete);
   item.appendChild(buttons);
 
-  list.appendChild(item);
+ // Insert item at the top instead of the bottom
+  list.insertBefore(item, list.firstChild);
 }
