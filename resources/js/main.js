@@ -113,5 +113,5 @@ function addItemToDOM(text, completed) {
   buttons.appendChild(complete);
   item.appendChild(buttons);
 
-  list.insertBefore(item, list.firstChild);
+  list.appendChild(item);
 }
