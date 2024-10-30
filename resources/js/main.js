@@ -26,15 +26,25 @@ document.getElementById('item').addEventListener('keydown', function (e) {
 });
 
 function addItem(value) {
+
+  var isDuplicatedInTodo = data.todo.findIndex(item => item === value);
+
+  if(isDuplicatedInTodo !== -1) {
+    displayPopup("failed", "Task is repeated.");
+    return;
+  }
+
   addItemToDOM(value);
   document.getElementById('item').value = '';
 
   data.todo.push(value);
   dataObjectUpdated();
+
+  displayPopup("success", "Task has been added.");
 }
 
 function renderTodoList() {
-  if (!data.todo.length || !data.completed.length) return; 
+  if (data.todo.length === 0 && data.completed.length === 0) return; 
   for (var i = 0; i < data.todo.length; i++) {
     var value = data.todo[i];
     addItemToDOM(value);
@@ -62,9 +72,10 @@ function removeItem() {
     data.completed.splice(data.completed.indexOf(value), 1);
   }
   dataObjectUpdated();
-
   
   parent.removeChild(item);
+
+  displayPopup("failed", "Task has been deleted");
 }
 
 function completeItem() {
@@ -76,9 +87,11 @@ function completeItem() {
   if (id === 'todo') {
     data.todo.splice(data.todo.indexOf(value), 1);
     data.completed.push(value);
+    displayPopup("success", "Task Completed Successfully!");
   } else {
     data.completed.splice(data.completed.indexOf(value), 1);
     data.todo.push(value);
+    displayPopup("failed", "Task has need some work.");
   }
   dataObjectUpdated();
 
@@ -114,4 +127,26 @@ function addItemToDOM(text, completed) {
   item.appendChild(buttons);
 
   list.insertBefore(item, list.firstChild);
+}
+
+function displayPopup(status, mgs) {
+  if(status === "success") {
+    var successPopup = document.getElementById("success_popup");
+    var successMgs = document.getElementById("success_mgs");
+    successPopup.classList.remove("hidden");
+    successMgs.innerText = mgs
+
+    setTimeout(function(){
+      successPopup.classList.add("hidden");
+    }, 2000);
+  } else {
+    var failedPopup = document.getElementById("failed_popup");
+    var failedMgs = document.getElementById("failed_mgs");
+    failedPopup.classList.remove("hidden");
+    failedMgs.innerText = mgs
+
+    setTimeout(function(){
+      failedPopup.classList.add("hidden");
+    }, 2000);
+  }
 }
