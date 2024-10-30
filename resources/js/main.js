@@ -92,7 +92,7 @@ function addItemToDOM(text, completed) {
   var list = (completed) ? document.getElementById('completed') : document.getElementById('todo');
 
   var item = document.createElement('li');
-  item.textContent = text;
+  item.innerText = text;
 
   var buttons = document.createElement('div');
   buttons.classList.add('buttons');
