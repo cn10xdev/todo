@@ -56,14 +56,24 @@ function removeItem() {
   var id = parent.id;
   var value = item.innerText;
 
+  
+     // Check if the item exists in the corresponding array before trying to remove it
   if (id === 'todo') {
-    data.todo.splice(data.todo.indexOf(value), 1);
+    const index = data.todo.indexOf(value);
+    if (index !== -1) {
+      // Remove from todo list if it exists
+      data.todo.splice(index, 1); 
+    }
   } else {
-    data.completed.splice(data.completed.indexOf(value), 1);
+    const index = data.completed.indexOf(value);
+    if (index !== -1) {
+      // Remove from completed list if it exists
+      data.completed.splice(index, 1); 
+    }
   }
   dataObjectUpdated();
 
-  
+   
   parent.removeChild(item);
 }
 
