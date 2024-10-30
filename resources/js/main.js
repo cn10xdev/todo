@@ -12,14 +12,14 @@ renderTodoList();
 // User clicked on the add button
 // If there is any text inside the item field, add that text to the todo list
 document.getElementById('add').addEventListener('click', function() {
-  var value = document.getElementById('item').value.trim();//use trim here to avodi whitespaces.
-  if (value) {
+  var value = document.getElementById('item').value;
+  if (value.trim()) {
     addItem(value);
   }
 });
 
 document.getElementById('item').addEventListener('keydown', function (e) {
-  var value = this.value.trim();//use trim here to avodi whitespaces.
+  var value = this.value;
   if ((e.keyCode === 13 || e.keyCode === 'NumpadEnter') && value) {
     addItem(value);
   }
@@ -92,7 +92,7 @@ function addItemToDOM(text, completed) {
   var list = (completed) ? document.getElementById('completed') : document.getElementById('todo');
 
   var item = document.createElement('li');
-  item.innerText = text;
+  item.textContent = text;
 
   var buttons = document.createElement('div');
   buttons.classList.add('buttons');
@@ -113,6 +113,5 @@ function addItemToDOM(text, completed) {
   buttons.appendChild(complete);
   item.appendChild(buttons);
 
- // Insert item at the top instead of the bottom
   list.insertBefore(item, list.firstChild);
 }
