@@ -34,7 +34,8 @@ function addItem(value) {
 }
 
 function renderTodoList() {
-  if (!data.todo.length || !data.completed.length) return; 
+  //Ensure the function exits only if both data.todo and data.completed are empty.
+  if (!data.todo.length && !data.completed.length) return; 
   for (var i = 0; i < data.todo.length; i++) {
     var value = data.todo[i];
     addItemToDOM(value);
