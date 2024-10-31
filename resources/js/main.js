@@ -20,7 +20,7 @@ document.getElementById('add').addEventListener('click', function() {
 
 document.getElementById('item').addEventListener('keydown', function (e) {
   var value = this.value;
-  if ((e.keyCode === 13 || e.keyCode === 'NumpadEnter') && value) {
+  if ((e.key === 'Enter' || e.code === 'NumpadEnter') && value) {
     addItem(value);
   }
 });
