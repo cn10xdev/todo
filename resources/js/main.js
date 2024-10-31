@@ -28,9 +28,11 @@ document.getElementById('item').addEventListener('keydown', function (e) {
 function addItem(value) {
   // Check if the item already exists in the todo list
   if (data.todo.includes(value)) {
+    //alert the user 
+    alert("This item is already added in the todo list.");
        return;
   }
-  
+
   addItemToDOM(value);
   document.getElementById('item').value = '';
 
