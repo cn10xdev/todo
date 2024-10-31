@@ -26,6 +26,11 @@ document.getElementById('item').addEventListener('keydown', function (e) {
 });
 
 function addItem(value) {
+  // Check if the item already exists in the todo list
+  if (data.todo.includes(value)) {
+       return;
+  }
+  
   addItemToDOM(value);
   document.getElementById('item').value = '';
 
@@ -34,7 +39,8 @@ function addItem(value) {
 }
 
 function renderTodoList() {
-  if (!data.todo.length || !data.completed.length) return; 
+  //Ensure the function exits only if both data.todo and data.completed are empty.
+  if (!data.todo.length && !data.completed.length) return; 
   for (var i = 0; i < data.todo.length; i++) {
     var value = data.todo[i];
     addItemToDOM(value);
@@ -56,14 +62,24 @@ function removeItem() {
   var id = parent.id;
   var value = item.innerText;
 
+  
+     // Check if the item exists in the corresponding array before trying to remove it
   if (id === 'todo') {
-    data.todo.splice(data.todo.indexOf(value), 1);
+    const index = data.todo.indexOf(value);
+    if (index !== -1) {
+      // Remove from todo list if it exists
+      data.todo.splice(index, 1); 
+    }
   } else {
-    data.completed.splice(data.completed.indexOf(value), 1);
+    const index = data.completed.indexOf(value);
+    if (index !== -1) {
+      // Remove from completed list if it exists
+      data.completed.splice(index, 1); 
+    }
   }
   dataObjectUpdated();
 
-  
+   
   parent.removeChild(item);
 }
 
@@ -92,7 +108,8 @@ function addItemToDOM(text, completed) {
   var list = (completed) ? document.getElementById('completed') : document.getElementById('todo');
 
   var item = document.createElement('li');
-  item.textContent = text;
+  item.innerText = text;  // Using innerText instead of  textContent
+  
 
   var buttons = document.createElement('div');
   buttons.classList.add('buttons');
@@ -113,5 +130,6 @@ function addItemToDOM(text, completed) {
   buttons.appendChild(complete);
   item.appendChild(buttons);
 
-  list.insertBefore(item, list.firstChild);
+   // Insert item at the top instead of the bottom
+ list.insertBefore(item, list.firstChild);
 }
